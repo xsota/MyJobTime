@@ -1,6 +1,9 @@
 package com.anna.myjobtime;
 
+import android.app.ListActivity;
 import android.databinding.DataBindingUtil;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,16 +12,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 
 import com.anna.myjobtime.databinding.ActivityMainBinding;
+import com.anna.myjobtime.databinding.ContentMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.List;
+
+public class MainActivity  extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
         setSupportActionBar(binding.toolbar);
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
@@ -28,6 +36,19 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        WifiManager manager = (WifiManager)getSystemService(WIFI_SERVICE);
+        if(manager.getWifiState() == WifiManager.WIFI_STATE_ENABLED) {
+            // APをスキャン
+            manager.startScan();
+            // スキャン結果を取得
+            List<ScanResult> apList = manager.getScanResults();
+            String[] aps = new String[apList.size()];
+            for(int i=0; i<apList.size(); i++) {
+                aps[i] = "SSID:" + apList.get(i).SSID + "\n" + apList.get(i).frequency + "MHz " + apList.get(i).level + "dBm";
+                binding.contentMain.text.setText(aps[i]);
+            }
+        }
     }
 
     @Override
