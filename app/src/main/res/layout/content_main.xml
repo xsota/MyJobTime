@@ -18,9 +18,31 @@
         tools:showIn="@layout/activity_main">
 
         <TextView
-            android:id="@+id/text"
+            android:id="@+id/ssid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World!" />
+            android:text="" />
+
+        <TextView
+            android:id="@+id/ip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ssid"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/mac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ip"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/rssi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mac"
+            android:text="" />
+
     </RelativeLayout>
 </layout>

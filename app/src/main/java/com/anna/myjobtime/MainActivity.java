@@ -3,6 +3,7 @@ package com.anna.myjobtime;
 import android.app.ListActivity;
 import android.databinding.DataBindingUtil;
 import android.net.wifi.ScanResult;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -38,17 +39,19 @@ public class MainActivity  extends AppCompatActivity {
         });
 
         WifiManager manager = (WifiManager)getSystemService(WIFI_SERVICE);
-        if(manager.getWifiState() == WifiManager.WIFI_STATE_ENABLED) {
-            // APをスキャン
-            manager.startScan();
-            // スキャン結果を取得
-            List<ScanResult> apList = manager.getScanResults();
-            String[] aps = new String[apList.size()];
-            for(int i=0; i<apList.size(); i++) {
-                aps[i] = "SSID:" + apList.get(i).SSID + "\n" + apList.get(i).frequency + "MHz " + apList.get(i).level + "dBm";
-                binding.contentMain.text.setText(aps[i]);
-            }
-        }
+        WifiInfo info = manager.getConnectionInfo();
+        //　SSIDを取得
+        binding.contentMain.ssid.setText(String.format("SSID : %s", info.getSSID()));
+        // IPアドレスを取得
+        int ipAdr = info.getIpAddress();
+        binding.contentMain.ip.setText(String.format("IP Adrress : %02d.%02d.%02d.%02d",
+                (ipAdr>>0)&0xff, (ipAdr>>8)&0xff, (ipAdr>>16)&0xff, (ipAdr>>24)&0xff));
+        // MACアドレスを取得
+        binding.contentMain.mac.setText(String.format("MAC Address : %s", info.getMacAddress()));
+        // 受信信号強度&信号レベルを取得
+        int rssi = info.getRssi();
+        int level = WifiManager.calculateSignalLevel(rssi, 5);
+        binding.contentMain.rssi.setText(String.format("RSSI : %d / Level : %d/4", rssi, level));
     }
 
     @Override
