@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import me.rmrf.myjobtime.activity.MainActivity;
 import me.rmrf.myjobtime.R;
 import me.rmrf.myjobtime.databinding.FragmentJobTimeBinding;
-import me.rmrf.myjobtime.util.WifiUtil;
 
 public class JobTimeFragment extends Fragment {
     private static final String ARG_PARAM = "page";
@@ -53,8 +52,6 @@ public class JobTimeFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_time, container, false);
         View view = binding.getRoot();
 
-        setWifiStatus(WifiUtil.getWifi(parentMainActivity));
-
         return view;
     }
 
@@ -85,13 +82,4 @@ public class JobTimeFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private void setWifiStatus(String[] apInfo){
-        if(apInfo.length == 0){return;}
-
-        binding.ssid.setText(apInfo[0]);
-        binding.ip.setText(apInfo[1]);
-        binding.mac.setText(apInfo[2]);
-        binding.rssi.setText(apInfo[3]);
-
-    }
 }

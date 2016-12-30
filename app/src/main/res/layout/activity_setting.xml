@@ -1,21 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+        <variable
+            name="apInfo"
+            type="me.rmrf.myjobtime.models.ApInfo" />
     </data>
-    <RelativeLayout
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/activity_setting"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="me.rmrf.myjobtime.activity.SettingActivity">
+        android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/activity_setting"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="せっってい"/>
-    </RelativeLayout>
+            android:orientation="vertical"
+            tools:context="me.rmrf.myjobtime.activity.SettingActivity">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin"
+                android:text="@string/regist_ssid"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacer"
+                android:background="@color/spacer"
+                />
+
+            <TextView
+                android:id="@+id/registed_ssid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{apInfo.ssid}"
+                />
+
+        </LinearLayout>
+    </ScrollView>
 </layout>

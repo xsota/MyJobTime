@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">MyJobTime</string>
-    <string name="action_settings">設定</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- settings -->
+    <string name="title_settings">設定</string>
+    <string name="regist_ssid">登録SSID</string>
+
 </resources>
