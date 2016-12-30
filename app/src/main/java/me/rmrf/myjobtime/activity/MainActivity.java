@@ -1,5 +1,6 @@
 package me.rmrf.myjobtime.activity;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
@@ -62,6 +63,8 @@ public class MainActivity  extends AppCompatActivity implements ViewPager.OnPage
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+            startActivity(intent);
             return true;
         }
 
