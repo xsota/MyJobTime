@@ -1,4 +1,4 @@
-package fragment;
+package me.rmrf.myjobtime.fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -9,26 +9,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import activity.MainActivity;
+import me.rmrf.myjobtime.activity.MainActivity;
 import me.rmrf.myjobtime.R;
-import me.rmrf.myjobtime.databinding.FragmentCallenderBinding;
-import util.WifiUtil;
+import me.rmrf.myjobtime.databinding.FragmentJobTimeBinding;
+import me.rmrf.myjobtime.util.WifiUtil;
 
-
-public class CallenderFragment extends Fragment {
+public class JobTimeFragment extends Fragment {
     private static final String ARG_PARAM = "page";
     private String mParam;
     private OnFragmentInteractionListener mListener;
-    private FragmentCallenderBinding binding;
+    private FragmentJobTimeBinding binding;
 
     private MainActivity parentMainActivity;
 
     // コンストラクタ
-    public CallenderFragment() {
+    public JobTimeFragment() {
     }
 
-    public static CallenderFragment newInstance(int page) {
-        CallenderFragment fragment = new CallenderFragment();
+    public static JobTimeFragment newInstance(int page) {
+        JobTimeFragment fragment = new JobTimeFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM, page);
         fragment.setArguments(args);
@@ -51,8 +50,10 @@ public class CallenderFragment extends Fragment {
             parentMainActivity = (MainActivity) getActivity();
         }
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_callender, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_job_time, container, false);
         View view = binding.getRoot();
+
+        setWifiStatus(WifiUtil.getWifi(parentMainActivity));
 
         return view;
     }
@@ -82,5 +83,15 @@ public class CallenderFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void setWifiStatus(String[] apInfo){
+        if(apInfo.length == 0){return;}
+
+        binding.ssid.setText(apInfo[0]);
+        binding.ip.setText(apInfo[1]);
+        binding.mac.setText(apInfo[2]);
+        binding.rssi.setText(apInfo[3]);
+
     }
 }

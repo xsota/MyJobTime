@@ -1,4 +1,4 @@
-package util;
+package me.rmrf.myjobtime.util;
 
 import android.content.Context;
 import android.net.wifi.WifiInfo;

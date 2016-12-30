@@ -1,4 +1,4 @@
-package views.adapters;
+package me.rmrf.myjobtime.views.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 
-import fragment.CallenderFragment;
-import fragment.JobTimeFragment;
+import me.rmrf.myjobtime.fragment.CallenderFragment;
+import me.rmrf.myjobtime.fragment.JobTimeFragment;
 
 /**
  * Created by kawanoanna on 2016/12/30.

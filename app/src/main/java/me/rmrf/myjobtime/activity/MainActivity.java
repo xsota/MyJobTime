@@ -1,4 +1,4 @@
-package activity;
+package me.rmrf.myjobtime.activity;
 
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
@@ -10,13 +10,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import fragment.CallenderFragment;
-import fragment.JobTimeFragment;
+import me.rmrf.myjobtime.fragment.CallenderFragment;
+import me.rmrf.myjobtime.fragment.JobTimeFragment;
 import me.rmrf.myjobtime.R;
 import me.rmrf.myjobtime.databinding.ActivityMainBinding;
 
-import util.WifiUtil;
-import views.adapters.FragmentPagerAdapter;
+import me.rmrf.myjobtime.fragment.CallenderFragment;
+import me.rmrf.myjobtime.fragment.JobTimeFragment;
+import me.rmrf.myjobtime.views.adapters.FragmentPagerAdapter;
 
 public class MainActivity  extends AppCompatActivity implements ViewPager.OnPageChangeListener,View.OnClickListener,
         JobTimeFragment.OnFragmentInteractionListener, CallenderFragment.OnFragmentInteractionListener {
