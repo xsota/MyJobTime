@@ -6,7 +6,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 
-import fragment.PageFragment;
+import fragment.CallenderFragment;
+import fragment.JobTimeFragment;
 
 /**
  * Created by kawanoanna on 2016/12/30.
@@ -28,14 +29,13 @@ public class FragmentPagerAdapter extends FragmentStatePagerAdapter{
     public void initFragments(){
         fragments = new ArrayList<>();
 
-//        fragments.add(new JobTimeFragment());
-//        fragments.add(new MapsFragment());
-//        fragments.add(new AnnounceFragment());
+        fragments.add(new JobTimeFragment());
+        fragments.add(new CallenderFragment());
     }
 
     @Override
     public Fragment getItem(int position) {
-        return PageFragment.newInstance(position + 1);
+        return fragments.get(position);
     }
 
     @Override

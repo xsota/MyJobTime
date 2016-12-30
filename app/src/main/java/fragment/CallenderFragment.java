@@ -1,30 +1,34 @@
 package fragment;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import activity.MainActivity;
 import me.rmrf.myjobtime.R;
-import me.rmrf.myjobtime.databinding.FragmentPageBinding;
+import me.rmrf.myjobtime.databinding.FragmentCallenderBinding;
+import util.WifiUtil;
 
 
-public class PageFragment extends Fragment {
+public class CallenderFragment extends Fragment {
     private static final String ARG_PARAM = "page";
     private String mParam;
     private OnFragmentInteractionListener mListener;
-    private FragmentPageBinding binding;
+    private FragmentCallenderBinding binding;
+
+    private MainActivity parentMainActivity;
 
     // コンストラクタ
-    public PageFragment() {
+    public CallenderFragment() {
     }
 
-    public static PageFragment newInstance(int page) {
-        PageFragment fragment = new PageFragment();
+    public static CallenderFragment newInstance(int page) {
+        CallenderFragment fragment = new CallenderFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM, page);
         fragment.setArguments(args);
@@ -42,21 +46,21 @@ public class PageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        int page = getArguments().getInt(ARG_PARAM, 0);
-        return inflater.inflate(R.layout.fragment_page, container, false);
+
+        if(parentMainActivity == null ) {
+            parentMainActivity = (MainActivity) getActivity();
+        }
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_callender, container, false);
+        View view = binding.getRoot();
+
+        return view;
     }
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        binding = FragmentPageBinding.bind(getView());
     }
 
     @Override
