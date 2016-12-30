@@ -1,4 +1,4 @@
-package com.anna.myjobtime;
+package me.rmrf.myjobtime;
 
 import org.junit.Test;
 

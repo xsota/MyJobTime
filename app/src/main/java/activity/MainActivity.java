@@ -11,8 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.anna.myjobtime.R;
-import com.anna.myjobtime.databinding.ActivityMainBinding;
+import me.rmrf.myjobtime.R;
+import me.rmrf.myjobtime.databinding.ActivityMainBinding;
 
 import util.WifiUtil;
 
